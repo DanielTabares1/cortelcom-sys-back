@@ -1,6 +1,5 @@
 package dani.cortelcomback.repository;
 
-import dani.cortelcomback.model.Client;
 import dani.cortelcomback.model.Service;
 import org.springframework.data.jpa.repository.JpaRepository;
 

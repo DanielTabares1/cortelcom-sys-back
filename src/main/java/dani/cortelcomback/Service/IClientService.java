@@ -1,7 +1,6 @@
 package dani.cortelcomback.Service;
 
 import dani.cortelcomback.model.Client;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
