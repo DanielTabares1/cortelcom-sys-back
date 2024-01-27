@@ -25,6 +25,11 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public Client findClientByIdentification(String identification) {
+        return clientRepository.findClientByIdentification(identification);
+    }
+
+    @Override
     public Client saveClient(Client client) {
         return clientRepository.save(client);
     }

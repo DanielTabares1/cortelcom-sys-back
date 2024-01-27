@@ -28,6 +28,12 @@ public class ClientController {
         return ResponseEntity.ok(client);
     }
 
+    @GetMapping("/by-cc/{cc}")
+    public ResponseEntity<Client> getClientByCC(@PathVariable String cc){
+        Client client = clientService.findClientByIdentification(cc);
+        return ResponseEntity.ok(client);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Client> addClient(@RequestBody Client client){
         Client addedClient = clientService.saveClient(client);
@@ -37,11 +43,19 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity<Client> editClient(@PathVariable int id, @RequestBody Client client){
         Client existingClient = clientService.findClientById(id);
+        existingClient.setIdentification(client.getIdentification());
         existingClient.setName(client.getName());
         existingClient.setLastName(client.getLastName());
         existingClient.setPhoneNumber(client.getPhoneNumber());
         clientService.saveClient(existingClient);
         return ResponseEntity.ok(existingClient);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Client> deleteClient(@PathVariable int id){
+        Client client = clientService.findClientById(id);
+        clientService.deleteClient(client);
+        return ResponseEntity.ok(client);
     }
 
 

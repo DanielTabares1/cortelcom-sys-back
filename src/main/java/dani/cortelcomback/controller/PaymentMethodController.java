@@ -22,10 +22,31 @@ public class PaymentMethodController {
         return ResponseEntity.ok(paymentMethods);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PaymentMethod> getPaymentMethodById(@PathVariable int id){
+        PaymentMethod paymentMethod = paymentMethodService.findPaymentMethodById(id);
+        return ResponseEntity.ok(paymentMethod);
+    }
+
     @PostMapping("/")
     public ResponseEntity<PaymentMethod> addPaymentMethod(@RequestBody PaymentMethod paymentMethod){
         PaymentMethod addedPaymentMethod = paymentMethodService.savePaymentMethod(paymentMethod);
         return ResponseEntity.ok(addedPaymentMethod);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PaymentMethod> editPaymentMethod(@PathVariable int id, @RequestBody PaymentMethod paymentMethod){
+        PaymentMethod existingPaymentMethod = paymentMethodService.findPaymentMethodById(id);
+        paymentMethod.setId(existingPaymentMethod.getId());
+        paymentMethodService.savePaymentMethod(paymentMethod);
+        return ResponseEntity.ok(paymentMethod);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PaymentMethod> deletePaymentMethod(@PathVariable int id){
+        PaymentMethod paymentMethod = paymentMethodService.findPaymentMethodById(id);
+        paymentMethodService.deletePaymentMethod(paymentMethod);
+        return ResponseEntity.ok(paymentMethod);
     }
 
 }
