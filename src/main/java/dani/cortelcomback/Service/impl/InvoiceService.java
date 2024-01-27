@@ -20,6 +20,16 @@ public class InvoiceService implements IInvoiceService {
     }
 
     @Override
+    public List<Invoice> findAllInvoicesByClientId(Integer id) {
+        return invoiceRepository.findByServiceClientId(id);
+    }
+
+    @Override
+    public List<Invoice> findAllInvoicesByService(Integer serviceId) {
+        return invoiceRepository.findByServiceId(serviceId);
+    }
+
+    @Override
     public Invoice findInvoiceById(Integer invoiceId) {
         return invoiceRepository.findById(invoiceId).orElse(null);
     }

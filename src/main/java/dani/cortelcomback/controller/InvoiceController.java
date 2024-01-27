@@ -28,6 +28,18 @@ public class InvoiceController {
         return ResponseEntity.ok(invoice);
     }
 
+    @GetMapping("/by-service/{serviceId}")
+    public ResponseEntity<List<Invoice>> listInvoicesByService(Integer serviceId){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByService(serviceId);
+        return ResponseEntity.ok(invoices);
+    }
+
+    @GetMapping("/by-client/{clientId}")
+    public ResponseEntity<List<Invoice>> listInvoicesByClient(Integer clientId){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByClientId(clientId);
+        return ResponseEntity.ok(invoices);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Invoice> addInvoice(@RequestBody Invoice invoice){
         Invoice addedInvoice = invoiceService.saveInvoice(invoice);
