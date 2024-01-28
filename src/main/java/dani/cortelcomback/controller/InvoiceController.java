@@ -40,6 +40,12 @@ public class InvoiceController {
         return ResponseEntity.ok(invoices);
     }
 
+    @GetMapping("/by-date/")
+    public ResponseEntity<List<Invoice>> listInvoicesByMonthAndYear(@RequestParam int month, @RequestParam int year){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByDate(month - 1, year);
+        return ResponseEntity.ok(invoices);
+    }
+
     @PostMapping("/")
     public ResponseEntity<Invoice> addInvoice(@RequestBody Invoice invoice){
         Invoice addedInvoice = invoiceService.saveInvoice(invoice);
