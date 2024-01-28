@@ -40,15 +40,21 @@ public class InvoiceController {
         return ResponseEntity.ok(invoices);
     }
 
-    @GetMapping("/by-date/")
-    public ResponseEntity<List<Invoice>> listInvoicesByMonthAndYear(@RequestParam int month, @RequestParam int year){
-        List<Invoice> invoices = invoiceService.findAllInvoicesByDate(month - 1, year);
+    @GetMapping("/by-month/")
+    public ResponseEntity<List<Invoice>> listInvoicesByMonthAndYear(@RequestParam int year, @RequestParam int month){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByDate(year, month - 1);
         return ResponseEntity.ok(invoices);
     }
 
-    @GetMapping("/by-date/{clientId}")
-    public ResponseEntity<List<Invoice>> listInvoicesByMonthAndYear(@RequestParam int month, @RequestParam int year, @PathVariable int clientId){
-        List<Invoice> invoices = invoiceService.findAllInvoicesByDateAndClientId(month - 1, year, clientId);
+    @GetMapping("/by-month/{clientId}")
+    public ResponseEntity<List<Invoice>> listInvoicesByMonthAndYearByClient(@RequestParam int year, @RequestParam int month, @PathVariable int clientId){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByDateAndClientId(year, month - 1, clientId);
+        return ResponseEntity.ok(invoices);
+    }
+
+    @GetMapping("/by-day/")
+    public ResponseEntity<List<Invoice>> listInvoicesByExactDay(@RequestParam int year, @RequestParam int month, @RequestParam int day){
+        List<Invoice> invoices = invoiceService.findAllInvoicesByDay(year, month - 1, day);
         return ResponseEntity.ok(invoices);
     }
 
