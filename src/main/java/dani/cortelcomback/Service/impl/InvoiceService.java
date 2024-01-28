@@ -3,6 +3,7 @@ package dani.cortelcomback.Service.impl;
 import dani.cortelcomback.Service.IInvoiceService;
 import dani.cortelcomback.model.Invoice;
 import dani.cortelcomback.repository.InvoiceRepository;
+import dani.cortelcomback.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +38,17 @@ public class InvoiceService implements IInvoiceService {
 
     @Override
     public List<Invoice> findAllInvoicesByDate(Integer month, Integer year) {
-        //Todo mover esta logic de aca pq no me gusta :(
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, 1, 0, 0, 0);
-        calendar.add(Calendar.SECOND, -1);
-        Date startOfMonth = calendar.getTime();
+        DateUtil dateUtil = new DateUtil(year, month);
+        Date startOfMonth = dateUtil.getStartOfMonth();
+        Date endOfMonth = dateUtil.getEndOfMonth();
         logger.info(startOfMonth.toString());
-        calendar.add(Calendar.MONTH, 1);
-        calendar.add(Calendar.SECOND, 2);
-        Date endOfMonth = calendar.getTime();
         logger.info(endOfMonth.toString());
         return invoiceRepository.findByGenerationDateBetween(startOfMonth, endOfMonth);
+    }
+
+    @Override
+    public List<Invoice> findAllInvoicesByDateAndClientId(Integer month, Integer year, Integer id) {
+        return null;
     }
 
     @Override

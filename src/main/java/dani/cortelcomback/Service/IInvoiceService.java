@@ -9,6 +9,7 @@ public interface IInvoiceService {
     public List<Invoice> findAllInvoicesByClientId(Integer id);
     public List<Invoice> findAllInvoicesByService(Integer serviceId);
     public List<Invoice> findAllInvoicesByDate(Integer month, Integer year);
+    List<Invoice> findAllInvoicesByDateAndClientId(Integer month, Integer year, Integer id);
     public Invoice findInvoiceById(Integer invoiceId);
     public Invoice saveInvoice(Invoice invoice);
     public void deleteInvoice(Invoice invoice);
