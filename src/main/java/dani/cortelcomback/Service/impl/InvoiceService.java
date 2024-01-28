@@ -41,14 +41,15 @@ public class InvoiceService implements IInvoiceService {
         DateUtil dateUtil = new DateUtil(year, month);
         Date startOfMonth = dateUtil.getStartOfMonth();
         Date endOfMonth = dateUtil.getEndOfMonth();
-        logger.info(startOfMonth.toString());
-        logger.info(endOfMonth.toString());
         return invoiceRepository.findByGenerationDateBetween(startOfMonth, endOfMonth);
     }
 
     @Override
     public List<Invoice> findAllInvoicesByDateAndClientId(Integer month, Integer year, Integer id) {
-        return null;
+        DateUtil dateUtil = new DateUtil(year, month);
+        Date startOfMonth = dateUtil.getStartOfMonth();
+        Date endOfMonth = dateUtil.getEndOfMonth();
+        return invoiceRepository.findByGenerationDateBetweenAndClientId(startOfMonth, endOfMonth, id);
     }
 
     @Override
