@@ -61,6 +61,14 @@ public class InvoiceService implements IInvoiceService {
     }
 
     @Override
+    public List<Invoice> findAllInvoicesByDayAndClientId(Integer year, Integer month, Integer day, Integer id) {
+        DateUtil dateUtil = new DateUtil(year, month, day);
+        Date startOfDay = dateUtil.getStartOfDay();
+        Date endOfDay = dateUtil.getEndOfDay();
+        return invoiceRepository.findByGenerationDateBetweenAndClientId(startOfDay, endOfDay, id);
+    }
+
+    @Override
     public Invoice findInvoiceById(Integer invoiceId) {
         return invoiceRepository.findById(invoiceId).orElse(null);
     }

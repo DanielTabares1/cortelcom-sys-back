@@ -7,8 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
-    public List<Invoice> findByServiceId(Integer id);
-    public List<Invoice> findByServiceClientId(Integer id);
-    public List<Invoice> findByGenerationDateBetween(Date startOfMonth, Date endOfMonth);
-    public List<Invoice> findByGenerationDateBetweenAndClientId(Date startOfMonth, Date endOfMonth, Integer clientId);
+    List<Invoice> findByServiceId(Integer id);
+
+    List<Invoice> findByServiceClientId(Integer id);
+
+    List<Invoice> findByGenerationDateBetween(Date startOfMonth, Date endOfMonth);
+
+    List<Invoice> findByGenerationDateBetweenAndClientId(Date startOfMonth, Date endOfMonth, Integer clientId);
 }

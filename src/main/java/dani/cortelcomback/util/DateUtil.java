@@ -7,30 +7,31 @@ public class DateUtil {
 
     private static Calendar calendar = Calendar.getInstance();
 
-    public DateUtil(int year, int month){
+    public DateUtil(int year, int month) {
         calendar.set(year, month, 1, 0, 0, 0);
     }
-    public DateUtil(int year, int month, int day){
+
+    public DateUtil(int year, int month, int day) {
         calendar.set(year, month, day, 0, 0, 0);
     }
 
-    public Date getStartOfMonth(){
+    public Date getStartOfMonth() {
         calendar.add(Calendar.SECOND, -1);
         return calendar.getTime();
     }
 
-    public Date getEndOfMonth(){
+    public Date getEndOfMonth() {
         calendar.add(Calendar.MONTH, 1);
         calendar.add(Calendar.SECOND, 1);
         return calendar.getTime();
     }
 
-    public Date getStartOfDay(){
+    public Date getStartOfDay() {
         calendar.add(Calendar.SECOND, -1);
         return calendar.getTime();
     }
 
-    public Date getEndOfDay(){
+    public Date getEndOfDay() {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         calendar.add(Calendar.SECOND, 1);
         return calendar.getTime();
