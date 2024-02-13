@@ -9,4 +9,7 @@ public interface IPaymentService {
     public Payment findPaymentById(Integer paymentId);
     public Payment savePayment(Payment payment);
     public void deletePayment(Payment payment);
+    public List<Payment> findPaymentByInvoiceId(Integer invoiceId);
+    public List<Payment> findPaymentByMonth(Integer year, Integer month);
+    public List<Payment> findPaymentByDay(Integer year, Integer month, Integer day);
 }
